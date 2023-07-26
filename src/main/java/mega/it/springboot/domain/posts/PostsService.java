@@ -1,7 +1,10 @@
 package mega.it.springboot.domain.posts;
 
+import java.util.List;
+import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import mega.it.springboot.web.dto.PostsListResponseDto;
 import mega.it.springboot.web.dto.PostsResponseDto;
 import mega.it.springboot.web.dto.PostsSaveRequestDto;
 import mega.it.springboot.web.dto.PostsUpdateRequestDto;
@@ -31,5 +34,12 @@ public class PostsService {
     Posts entity = postsRepository.findById(id)
         .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id=" +id));
     return new PostsResponseDto(entity);
+  }
+
+  @Transactional
+  public List<PostsListResponseDto> findAllDesc(){
+    return postsRepository.findAllDesc().stream()
+        .map(PostsListResponseDto::new)
+        .collect(Collectors.toList());
   }
 }
