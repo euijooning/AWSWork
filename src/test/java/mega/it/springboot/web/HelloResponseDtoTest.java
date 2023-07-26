@@ -1,7 +1,6 @@
 package mega.it.springboot.web;
 
-import static org.junit.Assert.*;
-
+import mega.it.springboot.web.dto.HelloResponseDto;
 import org.junit.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
